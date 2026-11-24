@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>PURE LEAF | Skincare</title>
+
+<style>
+
+* {
+
+    margin: 0;
+
+    padding: 0;
+
+    box-sizing: border-box;
+
+    font-family: Arial, sans-serif;
+
+}
+
+body {
+
+    background: #f8faf5;
+
+    color: #263d2c;
+
+}
+
+header {
+
+    background: #173d2b;
+
+    color: white;
+
+    padding: 22px;
+
+    text-align: center;
+
+}
+
+header h1 {
+
+    letter-spacing: 5px;
+
+    font-size: 30px;
+
+}
+
+nav {
+
+    background: #e9f0e7;
+
+    padding: 15px;
+
+    text-align: center;
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 10;
+
+}
+
+nav a {
+
+    color: #173d2b;
+
+    text-decoration: none;
+
+    margin: 10px;
+
+    font-weight: bold;
+
+}
+
+.hero {
+
+    text-align: center;
+
+    padding: 35px 15px;
+
+}
+
+.hero img {
+
+    width: 90%;
+
+    max-width: 750px;
+
+    height: 300px;
+
+    object-fit: cover;
+
+    border-radius: 18px;
+
+}
+
+.hero h2 {
+
+    margin: 20px;
+
+    font-size: 30px;
+
+}
+
+.hero p {
+
+    color: #65766a;
+
+}
+
+.section-title {
+
+    text-align: center;
+
+    margin: 35px 0;
+
+    font-size: 28px;
+
+}
+
+.products {
+
+    display: grid;
+
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+
+    gap: 20px;
+
+    padding: 20px;
+
+    max-width: 1100px;
+
+    margin: auto;
+
+}
+
+.card {
+
+    background: white;
+
+    border-radius: 16px;
+
+    padding: 15px;
+
+    text-align: center;
+
+    box-shadow: 0 3px 15px #00000012;
+
+}
+
+.card img {
+
+    width: 100%;
+
+    height: 190px;
+
+    object-fit: cover;
+
+    border-radius: 12px;
+
+}
+
+.card h3 {
+
+    margin: 15px 0 8px;
+
+}
+
+.card p {
+
+    margin-bottom: 12px;
+
+    color: #52745c;
+
+}
+
+button {
+
+    background: #245b3c;
+
+    color: white;
+
+    border: none;
+
+    padding: 12px 20px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+}
+
+button:hover {
+
+    background: #173d2b;
+
+}
+
+.cart {
+
+    background: #eaf1e8;
+
+    padding: 30px 15px;
+
+    text-align: center;
+
+}
+
+.cart-item {
+
+    background: white;
+
+    max-width: 500px;
+
+    margin: 12px auto;
+
+    padding: 15px;
+
+    border-radius: 10px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 10px;
+
+}
+
+.cart-item button {
+
+    padding: 7px 12px;
+
+}
+
+.total {
+
+    font-size: 22px;
+
+    margin: 20px;
+
+    font-weight: bold;
+
+}
+
+.about {
+
+    padding: 45px 20px;
+
+    text-align: center;
+
+}
+
+.about p {
+
+    margin: 12px;
+
+}
+
+footer {
+
+    background: #173d2b;
+
+    color: white;
+
+    padding: 25px;
+
+    text-align: center;
+
+}
+
+#confirmation {
+
+    display: none;
+
+    background: #e4f3e4;
+
+    text-align: center;
+
+    padding: 40px 15px;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+    <h1>PURE LEAF</h1>
+
+    <p>Nature's Touch. Your Glow.</p>
+
+</header>
+
+<nav>
+
+    <a href="#home">Home</a>
+
+    <a href="#products">Products</a>
+
+    <a href="#cart">Cart 🛒</a>
+
+    <a href="#about">About Us</a>
+
+</nav>
+
+<!-- HOME PAGE -->
+
+<section class="hero" id="home">
+
+    <h2>Discover Pure Skincare 🌿</h2>
+
+    <p>Beautiful skincare inspired by nature.</p>
+
+    <!-- CHANGE THIS IMAGE WHENEVER YOU LAUNCH A NEW PRODUCT -->
+
+    <img
+
+    src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=1000"
+
+    alt="Pure Leaf product launch">
+
+    <h2>Something Fresh Is Coming!</h2>
+
+    <p>Stay tuned for our upcoming launches.</p>
+
+</section>
+
+<!-- PRODUCTS -->
+
+<h2 class="section-title" id="products">
+
+    OUR FACE WASH COLLECTION
+
+</h2>
+
+<div class="products" id="productList"></div>
+
+<!-- SHOPPING CART -->
+
+<section class="cart" id="cart">
+
+    <h2 class="section-title">YOUR SHOPPING CART 🛒</h2>
+
+    <div id="cartItems">
+
+        Your cart is empty.
+
+    </div>
+
+    <div class="total" id="total">
+
+        Total: ₹0
+
+    </div>
+
+    <button onclick="buyNow()">
+
+        BUY NOW
+
+    </button>
+
+</section>
+
+<!-- ORDER CONFIRMATION -->
+
+<section id="confirmation">
+
+    <h2>🎉 ORDER CONFIRMED!</h2>
+
+    <p>Thank you for shopping with PURE LEAF.</p>
+
+    <p>Your order has been placed in this demo.</p>
+
+    <button onclick="location.reload()">
+
+        Continue Shopping
+
+    </button>
+
+</section>
+
+<!-- ABOUT US -->
+
+<section class="about" id="about">
+
+    <h2>ABOUT PURE LEAF 🌿</h2>
+
+    <p>
+
+        PURE LEAF is a skincare brand inspired by nature.
+
+    </p>
+
+    <h3>Founder</h3>
+
+    <p>Founder Name: YOUR NAME</p>
+
+    <p>Contact: YOUR PHONE NUMBER</p>
+
+    <p>Thank you for choosing PURE LEAF!</p>
+
+</section>
+
+<footer>
+
+    <h2>PURE LEAF</h2>
+
+    <p>Nature's Touch. Your Glow.</p>
+
+    <p>© 2026 PURE LEAF. All Rights Reserved.</p>
+
+</footer>
+
+<script>
+
+const products = [
+
+{
+
+name: "Vitamin C Face Wash",
+
+price: 199,
+
+image: "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=500"
+
+},
+
+{
+
+name: "Charcoal Face Wash",
+
+price: 199,
+
+image: "https://images.unsplash.com/photo-1556229010-6c3f2c9ca5f8?w=500"
+
+},
+
+{
+
+name: "Turmeric Face Wash",
+
+price: 199,
+
+image: "https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?w=500"
+
+},
+
+{
+
+name: "Litchi Daily Face Wash",
+
+price: 199,
+
+image: "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=500"
+
+},
+
+{
+
+name: "Aloe Vera Face Wash",
+
+price: 199,
+
+image: "https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?w=500"
+
+},
+
+{
+
+name: "Mint Face Wash",
+
+price: 199,
+
+image: "https://images.unsplash.com/photo-1556229010-6c3f2c9ca5f8?w=500"
+
+},
+
+{
+
+name: "Pineapple & Lemon Face Wash",
+
+price: 199,
+
+image: "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=500"
+
+}
+
+];
+
+let cart = {};
+
+const productList = document.getElementById("productList");
+
+products.forEach((product, index) => {
+
+productList.innerHTML += `
+
+<div class="card">
+
+<img src="${product.image}" alt="${product.name}">
+
+<h3>${product.name}</h3>
+
+<p>₹${product.price}</p>
+
+<button onclick="addToCart(${index})">
+
+ADD TO CART
+
+</button>
+
+</div>
+
+`;
+
+});
+
+function addToCart(index) {
+
+if (cart[index]) {
+
+cart[index]++;
+
+} else {
+
+cart[index] = 1;
+
+}
+
+updateCart();
+
+}
+
+function changeQuantity(index, amount) {
+
+cart[index] += amount;
+
+if (cart[index] <= 0) {
+
+delete cart[index];
+
+}
+
+updateCart();
+
+}
+
+function updateCart() {
+
+let html = "";
+
+let total = 0;
+
+for (let index in cart) {
+
+let product = products[index];
+
+let quantity = cart[index];
+
+total += product.price * quantity;
+
+html += `
+
+<div class="cart-item">
+
+<span>
+
+${product.name}
+
+<br>
+
+₹${product.price} × ${quantity}
+
+</span>
+
+<div>
+
+<button onclick="changeQuantity(${index}, -1)">
+
+-
+
+</button>
+
+${quantity}
+
+<button onclick="changeQuantity(${index}, 1)">
+
++
+
+</button>
+
+</div>
+
+</div>
+
+`;
+
+}
+
+document.getElementById("cartItems").innerHTML =
+
+html || "Your cart is empty.";
+
+document.getElementById("total").innerText =
+
+"Total: ₹" + total;
+
+}
+
+function buyNow() {
+
+if (Object.keys(cart).length === 0) {
+
+alert("Please add a product first!");
+
+return;
+
+}
+
+document.getElementById("confirmation").style.display = "block";
+
+document.getElementById("confirmation").scrollIntoView();
+
+}
+
+</script>
+
+</body>
+
+</html>
